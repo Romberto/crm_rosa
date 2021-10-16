@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="{% static 'manager/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/more.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/media.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <title>подробнее</title>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <div class="header__logo">
+                <h3 class="header__text">Миллиардонесущая Кирилловская Компания</h3>
+            </div>
+            <a href="{% url 'main' %}">
+                <div class="btn_main btn btn-primary mb-3">
+                    на главную
+                </div>
+            </a>
+        </header>
+        <main class="more_main">
+            <div class="more_company">
+                <h3 class="more_title mb-3">подробная информация о сделке</h3>
+                <hr>
+                <div class="more_company_name">
+                    <p class="sub_title">предприятие:</p>
+                    <p class="sub_text">{{ case.companyName}}</p>
+                </div>
+                <div class="more_name">
+                    <p class="sub_title">имя контактного лица:</p>
+                    <p class="sub_text">{{ case.farmerName}}</p>
+                </div>
+                <div class="more_contacns">
+                    <div class="more_phone">
+                        <p class="sub_title">телефон</p>
+                        <ul>
+                            <li class="sub_text">{{ case.phone}}</li>
+                        </ul>
+
+                </div>
+                <div class="more_email">
+                    <p class="sub_title">почта</p>
+                    {% if case.mail %}
+                        <p class="sub_text">{{ case.mail }}</p>
+                    {% else %}
+                        <p class="sub_text"> Это поле ещё не заполнено </p>
+                    {% endif %}
+                </div>
+                <div class="more_adress">
+                    <p class="sub_title">адрес</p>
+                    {% if case.address%}
+                        <p class="sub_text">{{ case.address }}</p>
+                    {% else %}
+                        <p class="sub_text"> Это поле ещё не заполнено </p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="btn btn-success mb-3 js_more_contact">изменить контактные данные</div>
+
+
+
+                <hr>
+                <div class="more_tegs">
+                    <p class="sub_title">теги</p>
+                    <ul class="more_list">
+                        {% for teg in case.tegName %}
+                            <li class="more_item">{{teg}}</li>
+                         {% endfor %}
+                    </ul>
+                </div>
+                <div class="btn btn-success mb-3 js_more_tegs">добавить теги</div>
+                <hr>
+                <div class="more_comment">
+                    <p class="sub_title">комментарии к сделке</p>
+                    <ul class="more_comment_list">
+                        {% for comment in comments %}
+                        <li class="more_comment_item">
+                            <p class="sub_text comment_date">{{comment.date_created}}</p>
+                            <p class="sub_text">{{comment.text_comment}}</p>
+                            <div class="comment_delimetr"></div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="btn btn-success mb-3 js_more_comment">добавить комментарии</div>
+                <hr>
+                <div class="more_status">
+                    <p class="sub_title">статус сделки</p>
+                    <p class="sub_text">{{ case.status.description }}</p>
+
+
+                    <div class="btn btn-success mb-3 js_more_status">изменить статус сделки</div>
+                </div>
+            </div>
+
+        </main>
+
+                    <!-- popup_contact -->
+        <div class="more_popup">
+            <div class="close_popup_btn"></div>
+            <div class="more_popup_window">
+                <p class="sub_title popup_title">изменить контактные данные</p>
+                <form action="#" class="more_contact_form" method="POST" id="address">
+
+                    {% csrf_token %}
+                    {{ form_more_contact.as_p }}
+                    <button type="submit" class="btn btn-primary popup_btn js_comment_ajax" id="{{ case.id }}">изменить</button>
+                </form>
+                <p class="msg"></p>
+            </div>
+        </div>
+                   <!-- popup_teg -->
+        <div class="more_popup_teg">
+            <div class="close_popup_btn"></div>
+            <div class="more_popup_window">
+                <p class="sub_title popup_title">добавить теги</p>
+                <form action="#" class="more_contact_form" method="POST" id="tags">
+                    {% csrf_token %}
+                    <div class="checkselect  mb-3">
+                        {{ form_more_tags.tegName}}
+                    </div>
+                    <button type="submit" class="btn btn-primary popup_btn">добавить</button>
+                </form>
+                <p class="tag_msg"></p>
+            </div>
+        </div>
+<!--        popup comment-->
+        <div class="more_popup_comment">
+            <div class="close_popup_btn"></div>
+            <div class="more_popup_window">
+                <p class="sub_title popup_title">добавить комментарий</p>
+                <form action="#" class="more_contact_form" method="POST" id="comment">
+                    {% csrf_token %}
+                    {{ form_more_comment.text_comment}}
+                    <button type="submit" class="btn btn-primary popup_btn">добавить</button>
+                    <p class="comment_msg"></p>
+                </form>
+            </div>
+        </div>
+
+<!--        popup status-->
+        <div class="more_popup_status">
+            <div class="close_popup_btn"></div>
+            <div class="more_popup_window">
+                <p class="sub_title popup_title">изменить статус сделки</p>
+                <ul class="status_list">
+                        {% for el in all_status %}
+                            {% if case.status == el %}
+                                 <li class="status_item"><button type="submit" name="{{ el.status }}" value="{{ el.status}}" class="{{ el.status}} js_status_btn btn btn-outline-success is_active">{{ el.description }}</button></li>
+                            {% else %}
+                                 <li class="status_item"><button type="submit" name="{{ el.status }}" value="{{ el.status}}" class="{{ el.status}} js_status_btn btn btn-outline-success">{{ el.description }}</button></li>
+                            {% endif %}
+                        {% endfor %}
+                </ul>
+                        <p class="status_msg"></p>
+                    </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'manager/js/more.js' %}"></script>
+    <script src="{% static 'manager/js/new_case.js' %}"></script>
+
+
+
+</body>
+</html>

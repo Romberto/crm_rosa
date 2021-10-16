@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'manager/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/media.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container main">
+
+        <header class="header">
+            <div class="header__logo">
+                <h3 class="header__text">Миллиардонесущая Кирилловская Компания</h3>
+            </div>
+        </header>
+        <main>
+            <div class="main__container">
+                <div class="main__head">
+                    <p class="main__post">менеджер</p>
+                    <a href="{% url 'logout' %}">
+                        <div class="btn_main btn btn-primary mb-3">
+                            выход
+                        </div>
+                   </a>
+                </div>
+
+                <ul class="main__list">
+                    <li class="main__post-name">{{ user.first_name }} {{ user.last_name}}</li>
+                    <li class="main__date">{{ today }}</li>
+                </ul>
+
+                <ul class="main__menu">
+                    <li class="menu__items mb-4">
+                        <a href="{% url 'new_case' %}"  class="menu__btn-link btn btn-primary">новая сделка</a>
+                        <a href="{% url 'new_case' %}"  class="menu__icon-link"><img src="{% static 'manager/images/plus.svg'%}" class="plus__logo"></a>
+                    </li>
+                    <li class="menu__items mb-4">
+                        <a href="{% url 'my_case' %}"  class="menu__btn-link btn btn-primary">мои сделки</a>
+                        <a href="{% url 'my_case' %}"  class="menu__icon-link"><img src="{% static 'manager/images/cheked.svg' %}" class="cheked__logo"></a>
+                    </li>
+
+                    <li class="menu__items mb-4">
+                        <a  href="#" class="menu__btn-link btn btn-primary">поиск по тегу</a>
+                        <a href="#"  class="menu__icon-link"><img src="{% static 'manager/images/search1.svg' %}" class="search_logo"></a>
+                    </li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

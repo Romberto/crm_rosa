@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'manager/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/media.css' %}">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <title>Log in</title>
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <div class="header__logo">
+            <h3 class="header__text">Миллиардонесущая Кирилловская Компания</h3>
+        </div>
+        <a href="index.html">
+            <div class="btn_main btn btn-primary mb-3">
+                на главную
+            </div>
+        </a>
+    </header>
+    <main class="auth_main">
+        <div class="auth_window">
+            <h3 class="auth_title">Вход</h3>
+            {% if form.errors %}
+            {{ form.errors }}
+            {% endif %}
+            <form action="#" class="form-group" method="POST">
+                {% csrf_token %}
+                {{ form.username }}
+                {{ form.password }}
+
+
+                <button type="submit" class="btn btn-primary btn-auth mb-3">войти</button>
+
+            </form>
+        </div>
+    </main>
+</div>
+</body>
+</html>

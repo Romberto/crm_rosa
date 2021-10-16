@@ -1,0 +1,47 @@
+@media(max-width: 1024px){
+    .main{background-image: url('../image/work_two_1024.jpg');}
+    
+}
+
+@media(max-width: 850px){
+.status_item:not(:last-child){
+    margin-right:10px;
+}
+.status_item{
+    margin-bottom: 10px;
+}
+
+
+@media(max-width: 600px){
+    .container{
+        max-width: 550px;
+    }
+    .new_case_form{
+        max-width: 500px;
+    }
+    .menu__btn-link{
+        font-size: 20px;
+        padding-bottom: 0;
+    }
+    .main__menu{
+        max-width: 80%;
+    }
+    .search_logo, .cheked__logo, .plus__logo{
+        width: 20px;
+        height: 20px;
+        top: 4px;
+        left: 4px;
+    }
+    .menu__icon-link{
+        width: 30px;
+        height: 28px;
+    }
+    .header__text{
+        font-size: 20px;
+    }
+}
+@media(max-width: 390px){
+    .menu__btn-link{
+        font-size: 14px;
+    }
+}

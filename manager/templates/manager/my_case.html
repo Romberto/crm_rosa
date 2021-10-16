@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="{% static 'manager/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/my_case.css' %}">
+    <link rel="stylesheet" href="{% static 'manager/css/media.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <title>мои сделки</title>
+</head>
+<body>
+    <div class="container main_popup">
+
+        <!-- popup_phone -->
+
+        <div class="popup_phone">
+            <div class="popup_phone_window">
+                <ul class="popup_phone_list">
+                    <li class="popup_phone_item">
+                        <p class="popup_phone_number">+79994445554</p>
+                        <a href="#" class="popup_phone_link"><img src="{% static 'manager/images/phone.svg' %}" class="popup_phone_image" alt="phoneIcon"></a>
+                    </li>
+                </ul>
+                <div class="btn btn-primary js_popup_phone_btn">
+                    отмена
+                </div>
+            </div>
+        </div>
+
+        <!-- popup_adress -->
+
+        <div class="popup_adress">
+            <div class="popup_phone_window">
+                <p class="popup_adress_text"></p>
+                <div class="btn btn-primary js_popup_phone_btn">
+                    закрыть
+                </div>
+            </div>
+        </div>
+
+
+
+        <header class="header">
+            <div class="header__logo">
+                <h3 class="header__text">Миллиардонесущая Кирилловская Компания</h3>
+            </div>
+            <a href="{% url 'main' %}">
+                <div class="btn_main btn btn-primary mb-3">
+                    на главную
+                </div>
+            </a>
+        </header>
+        <main>
+            <p class="new_case__title mb-3">мои сделки</p>
+            {% if cases %}
+            <p>{{ count }}</p>
+            <ul class="myCaseList">
+                {% for case in cases %}
+                <li class="myCaseitem mb-3">
+                    <div class="cartRow">
+                        <p class="rowTitle">предприятие :</p>
+                        <p>{{case.companyName}}</p>
+                    </div>
+                    <div class="cartRow">
+                        <p class="rowTitle">тема :</p>
+                        <p>{{case.tegName}}</p>
+                    </div>
+                    <div class="cartRow">
+                        <p class="rowTitle">статус :</p>
+                        <p class="green">{{case.status }}</p>
+                    </div>
+                    <div class="cartAction">
+                        <a href="{% url 'more' case.id %}">подробнее</a>
+                        <div class="cartContact">
+
+                            <a href="#" class="cartlinkPhone">
+                                <img class="cartimage" src="{% static 'manager/images/phone.svg' %}"  alt="phone">
+                                <p hidden class="js_phone_case" >{{case.phone}}</p>
+                            </a>
+                            <a href="#" class="cartlinkAdress">
+                                <img class="cartimage" src="{% static 'manager/images/geo.svg' %}" alt="adressImg" >
+                                <p hidden class="js_address_case" >{{case.address}}</p>
+                            </a>
+                        </div>
+                    </div>
+
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </main>
+    </div>
+
+    <script src="{% static 'manager/js/my_case.js' %}"></script>
+
+</body>
+</html>

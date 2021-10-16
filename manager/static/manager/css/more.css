@@ -1,0 +1,114 @@
+.more_main{
+    position: relative;
+}
+
+.sub_title {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+
+
+/* more_popup */
+.close_popup_btn{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.close_popup_btn::before{
+    content: '';
+    position: absolute;
+    background: #fff;
+    width: 40px;
+    height: 3px;
+    top: 20px;
+    left: -10px;
+    transform: rotate(45deg);
+}
+.close_popup_btn::after{
+    content: '';
+    position: absolute;
+    background: #fff;
+    width: 40px;
+    height: 3px;
+    top: 20px;
+    left: -10px;
+    transform: rotate(-45deg);
+}
+
+.more_popup,
+.more_popup_teg,
+.more_popup_comment,
+.more_popup_status
+ {
+    padding-top: 20px;
+    position: absolute;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, .8);
+    z-index: 10;
+    display: none;
+}
+.more_popup_window {
+    padding-left: 0;
+    position: absolute;
+    width: 80%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+    z-index: 10;
+    border: 2px solid #03a2ff;
+    border-radius: 5px;
+    background-color: #fafafa;
+}
+.more_contact_form{
+    width: 80%;
+    margin: 20px auto;
+}
+.popup_title{
+    text-align: center;
+}
+.popup_btn{
+    display: block;
+    margin: 0 auto;
+}
+.comment_delimetr{
+    width: 80%;
+    height: 2px;
+    background-color: #198754;
+    margin: 0 auto;
+}
+.comment_date{
+    text-align: center;
+    margin-top: 20px;
+}
+.sub_text{
+    text-align:center;
+    width: 80%;
+}
+
+.is_active{
+    background-color: #198754;
+    color: #fafafa;
+}
+
+.status_list{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.status_item:not(:last-child){
+    margin-right:20px;
+
+
+}
+.js_status_btn{
+    width: 140px;
+
+}

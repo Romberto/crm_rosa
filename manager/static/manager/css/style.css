@@ -1,0 +1,32 @@
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    color:chocolate;
+
+}
+
+/* .container{
+    max-width: 950px;
+    margin: 0 auto;
+} */
+
+
+
+.header__logo{
+    width: 60%;
+    margin: 30px auto;
+}
+
+.header__text{
+    color: chocolate;
+    font-size: 30px;
+    text-align: center;
+}
